@@ -1,3 +1,4 @@
+// GDC Calculator (Two number)
 #include <stdio.h>
 #include <math.h>
 int main(){
