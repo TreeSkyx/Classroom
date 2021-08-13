@@ -1,3 +1,4 @@
+//Factoring Number
 #include <stdio.h>
 int main(){
     int n,x = 2;
