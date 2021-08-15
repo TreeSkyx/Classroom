@@ -1,4 +1,4 @@
-//week1 program1
+//week2 program1
 #include <stdio.h>
 int main(){
 	float a=0,b=0;
