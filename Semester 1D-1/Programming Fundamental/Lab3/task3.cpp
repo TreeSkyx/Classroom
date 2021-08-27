@@ -1,3 +1,5 @@
+//LAB 3
+// Butterfly C Program
 #include <stdio.h>
 int main(){
 	int n,i,j,k,l;
