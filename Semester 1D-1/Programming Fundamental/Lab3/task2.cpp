@@ -1,3 +1,6 @@
+//LAB3
+// task : P(x) be the sum of the number from 1 to n that is evenly divisible to x
+// write program to finding the number 1 to 10,000 which number give the value P(x) = x 
 #include <stdio.h>
 int main() {
 	int n,i,j,sum=0;
