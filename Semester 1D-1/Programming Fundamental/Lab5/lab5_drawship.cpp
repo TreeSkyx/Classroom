@@ -1,3 +1,5 @@
+//LAB05
+//Text Mode Game 01
 #include <stdio.h>
 #include <windows.h>
 #include <conio.h>
@@ -8,22 +10,22 @@ int main(){
 	int x=38,y=20;
 	draw_ship(x,y);
 	do {
-		if(_kbhit()){
-			ch=_getch();
+		if(_kbhit()){  //check keyboard buffer
+			ch=_getch(); // get character from keyboard
 			if(ch=='a'){
 				--x;
-				if(x>0)draw_ship(x,y);
+				if(x>0)draw_ship(x,y); //move left
 				else x=1;
 			}
 			if(ch=='d') {
 				++x;
-				if(x<81)draw_ship(x,y);
+				if(x<81)draw_ship(x,y); //move right
 				else x=80;
 			}
 			if(ch=='w'){
 				if(y>0){
-					erase_ship(x,y);
-					draw_ship(x,--y);
+					erase_ship(x,y); 
+					draw_ship(x,--y); //move up
 				}
 				else y=0;
 			}
@@ -31,14 +33,14 @@ int main(){
 				
 				if(y<24){
 					erase_ship(x,y);
-					draw_ship(x,++y);
+					draw_ship(x,++y); //move down
 				}
 				else y=24;
 			}
-			fflush(stdin);
+			fflush(stdin); //clear keyboard buffer
 		}
-		Sleep(100);
-	} while(ch!='x');
+		Sleep(100); //delay
+	} while(ch!='x'); //exit loop
 	return 0;
 }
 void draw_ship(int x, int y){
