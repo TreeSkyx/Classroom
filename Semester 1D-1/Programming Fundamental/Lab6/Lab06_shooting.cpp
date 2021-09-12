@@ -1,3 +1,5 @@
+//LAB06
+//Text Mode Game 02
 #include <stdio.h>
 #include <windows.h>
 #include <conio.h>
