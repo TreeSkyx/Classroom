@@ -51,7 +51,7 @@ int main(){
 			if(bullet[count]!=1 && bstat==1) {
 				bullet[count]=1;
 				bx[count]=x+3;
-				by[count]=y-2;
+				by[count]=y-1;
 				count++;
 				bstat=0;
 				ch='.';
