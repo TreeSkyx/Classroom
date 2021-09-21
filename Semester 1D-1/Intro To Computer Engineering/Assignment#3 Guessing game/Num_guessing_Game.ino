@@ -1,7 +1,8 @@
-#define A 5
-#define B 4
-#define LG 3
-#define LR 2
+//---Number guessing game for Arduino UNO with 7segment(1)---
+#define A 5 //button A
+#define B 4 //button B
+#define LG 3 //green led(optional)
+#define LR 2 //red led(optional)
 //  Phototype Function
 void num_increasing(int);
 void guessing(int);
@@ -30,7 +31,7 @@ void setup() {
     pinMode(segmentPins[i], OUTPUT);
   }
   randomSeed(analogRead(A0));
-  randomN = random(1, 10);
+  randomN = random(1, 10); //random in range (1,n-1)
 }
 
 void loop() {
@@ -71,7 +72,7 @@ void guessing(int reading) {
   if (gstat == 1) {
     if (num == randomN) {
       bool isBitSet;
-      digitalWrite(LG,HIGH);
+      digitalWrite(LG,HIGH); //turn on green led[correct answer](optional)
       segmentShow(12);
         for (int segment = 0; segment < 8; segment++) {
         isBitSet = bitRead(BitPattern[9], segment);
@@ -84,14 +85,14 @@ void guessing(int reading) {
       num = 0;
     }
     else if (num < randomN) {
-      digitalWrite(LR,HIGH);
+      digitalWrite(LR,HIGH); //turn on red led[incorrect answer](optional)
       segmentShow(10);
       delay(1000);
       digitalWrite(LR,LOW);
       gstat = 0;
     }
     else if (num > randomN) {
-      digitalWrite(LR,HIGH);
+      digitalWrite(LR,HIGH); //turn on red led[incorrect answer](optional)
       segmentShow(11);
       delay(1000);
       digitalWrite(LR,LOW);
