@@ -1,9 +1,9 @@
-#define B1 12
-#define B2 11
-#define B3 10
-#define L1 4
-#define L2 3
-#define L3 2
+#define B1 12 //button 1 for arudio pin 12
+#define B2 11 //button 2 for arudio pin 12
+#define B3 10 //button 3 for arudio pin 12
+#define L1 4 //LED1
+#define L2 3 //LED2
+#define L3 2 //LED3
 // Prototype Function
 void redLED(int);
 void greenLED(int);
@@ -15,7 +15,7 @@ int debug = 0;
 int light;
 
 //Timer
-unsigned long L1delay = 3000, L2delay = 2000, L3delay = 3000;
+unsigned long L1delay = 3000, L2delay = 2000, L3delay = 3000; //delay for millis
 unsigned long L1past = 0, L2past = 0, L3past = 0, L2b;
 
 // Debounce Var.
