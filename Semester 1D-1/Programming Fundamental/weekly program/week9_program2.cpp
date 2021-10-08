@@ -8,5 +8,5 @@ int main(){
 	y=x^y;
 	x=x^y;
 	printf("After : x=%d y=%d",x,y);
-	
+	return 0;
 }
