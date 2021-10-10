@@ -1,3 +1,5 @@
+//LAB08
+//Text Mode Game 04
 #include <stdio.h>
 #include <windows.h>
 #include <time.h>
