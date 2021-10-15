@@ -1,7 +1,7 @@
 #include "LedControl.h"
-#define POT_PIN A1
-#define Default_speed 250
-LedControl lc = LedControl(11, 13, 10, 2); // CLK,DIN,CS,Numberof LED Module
+#define POT_PIN A1 //Potentiometer pin
+#define Default_speed 250 //default speed of ball
+LedControl lc = LedControl(11, 13, 10, 2); // CLK,DIN,CS,Number of LED Module
 //speaker var.
 int speakerPin = 3;
 int tones[] = {261, 277, 294, 311, 330, 349, 370, 392, 415, 440};
@@ -19,7 +19,7 @@ int AIpad;
 int add = 0;
 char direct;
 int ballSpeed = Default_speed;
-struct ballPos {
+struct ballPos { //ball position
   int row;
   int col;
 }; ballPos bPos;
@@ -65,8 +65,7 @@ void loop() {
     changeDis();// ball jump btw. display 0&1
     ballMove(direct);// movement of the ball
     hitCheck(bPos.col, bPos.row);// collision check
-    changeSpeed();
-    Serial.println(ballSpeed);
+    changeSpeed();// change ball speed
   }
   lose();
   delay(3000);
@@ -265,7 +264,7 @@ void changeSpeed(){
     if(ballSpeed<=50){
       ballSpeed-=10;
     }
-    else if(ballSpeed<10){
+    else if(ballSpeed<10){ // minimum ball speed
       ballSpeed=10;
     }
     else{
