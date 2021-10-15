@@ -18,10 +18,10 @@ void receiveData(int howMany)
   Serial.print("From Master : ");
   while(1 < Wire.available()) 
   {
-    char c = Wire.read(); // receive byte as a character
+    char c = Wire.read(); // read character
     Serial.print(c);         // print the character
   }
-  num = Wire.read();    // receive byte as an integer
+  num = Wire.read();    // read an integer
   Serial.println(num);         // print the integer
   num+=1;
 }
