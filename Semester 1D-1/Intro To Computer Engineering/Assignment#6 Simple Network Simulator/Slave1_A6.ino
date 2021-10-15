@@ -2,8 +2,8 @@
 byte num;
 void setup()
 {
-  //Wire.begin(1); // Slave 1
-  Wire.begin(2); // Slave 2
+  Wire.begin(1); // Slave 1
+  //Wire.begin(2); // Slave 2
   Wire.onReceive(receiveData);
   Wire.onRequest(requestData);
   Serial.begin(9600); // serial monitor output
@@ -28,6 +28,6 @@ void receiveData(int howMany)
 void requestData(){
   Wire.write("Hello");
   Wire.write(num);
-  Serial.print("Slave 2 To Master : Hello");
+  Serial.print("Slave 1 To Master : Hello");
   Serial.println(num);
 }
