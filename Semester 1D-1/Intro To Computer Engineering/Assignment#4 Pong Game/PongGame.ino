@@ -1,7 +1,7 @@
 #include "LedControl.h"
 #define POT_PIN A1 //Potentiometer pin
 #define Default_speed 250 //default speed of ball
-LedControl lc = LedControl(11, 13, 10, 2); // CLK,DIN,CS,Number of LED Module
+LedControl lc = LedControl(11, 13, 10, 2); // DIN,CLK,CS,Number of LED Module
 //speaker var.
 int speakerPin = 3;
 int tones[] = {261, 277, 294, 311, 330, 349, 370, 392, 415, 440};
