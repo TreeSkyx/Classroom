@@ -9,7 +9,7 @@ LedControl lc = LedControl(11, 13, 10, 4); // DIN,CLK,CS,Number of LED Module
 // Time
 unsigned int second = 0,minute = 0,hour=0;
 int timer1_counter;
-int aMinute=0,aHour=0;
+unsigned int aMinute=0,aHour=0;
 int se = 0,ho = 0,mi = 0;
 int set=0;
 int sS =0;
@@ -105,8 +105,8 @@ void SettingB(int reading) // Setting button debounce
             set=0;
             EEPROM.put(eeAddress, hour);
             EEPROM.put(sizeof(hour), minute);
-            EEPROM.put(sizeof(minute), aHour);
-            EEPROM.put(sizeof(aHour), aMinute);
+            EEPROM.put(sizeof(hour)+sizeof(minute), aHour);
+            EEPROM.put(sizeof(hour)+sizeof(minute)+sizeof(aHour), aMinute);
             Serial.println("Written Time & Alarm to EEPROM!");
           }
             
@@ -199,10 +199,10 @@ void setup(){
   Serial.print("Read Time & Alarm from EEPROM: "); // Read Time from EEPROM
   EEPROM.get(eeAddress, hour);
   EEPROM.get(sizeof(hour), minute);
-  EEPROM.get(sizeof(minute), aHour);
-  EEPROM.get(sizeof(aHour), aMinute);
+  EEPROM.get(sizeof(hour)+sizeof(minute), aHour);
+  EEPROM.get(sizeof(hour)+sizeof(minute)+sizeof(aHour), aMinute);
 
-  Serial.println("Checker"); // Timer Debug
+  // Timer Debug
   Serial.print("Time : ");
   Serial.print(hour);
   Serial.print(":");
@@ -244,9 +244,7 @@ void setup(){
     minute++;
     EEPROM.put(eeAddress, hour);
     EEPROM.put(sizeof(hour), minute);
-    EEPROM.put(sizeof(minute), aHour);
-    EEPROM.put(sizeof(aHour), aMinute);
-    Serial.println("Written Time & Alarm to EEPROM!");
+    Serial.println("Written Time to EEPROM!");
   }
   if(minute == 60){ // hour change
     minute = 0;
