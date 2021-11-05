@@ -317,6 +317,6 @@ void LDR_Brightness_Change(){ // Change LED Matrix brightness via LDR Sensor
   else if (sensor_val > 768 && sensor_val <= 896) {val = 1;}
   else if (sensor_val > 896 && sensor_val <= 1024) {val = 0;}
   for(int address=0; address < devices; address++){
-    lc.setIntensity(address,0);
+    lc.setIntensity(address,val);
   }
 }
