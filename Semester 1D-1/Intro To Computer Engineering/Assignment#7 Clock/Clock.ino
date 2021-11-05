@@ -294,7 +294,8 @@ void displayNumber(uint64_t image,int unit){ // Display Number & Text on LED Mat
     if(unit==2){maxN = 7;}
     byte row = (image >> i * 8) & 0xFF;
     for(int j=0;j<maxN;j++){
-      lc.setLed(unit,i,j,bitRead(row,j)); // address,row,column  
+      lc.setLed(unit,i,j,bitRead(row,j)); // address,row,column
+      delay(5);
     }
   }
 }
