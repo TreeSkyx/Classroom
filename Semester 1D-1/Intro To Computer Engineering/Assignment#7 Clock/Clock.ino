@@ -295,7 +295,7 @@ void displayNumber(uint64_t image,int unit){ // Display Number & Text on LED Mat
     byte row = (image >> i * 8) & 0xFF;
     for(int j=0;j<maxN;j++){
       lc.setLed(unit,i,j,bitRead(row,j)); // address,row,column
-      delay(5);
+      delay(1); //number transition delay
     }
   }
 }
