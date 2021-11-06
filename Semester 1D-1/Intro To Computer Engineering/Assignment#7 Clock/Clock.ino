@@ -135,7 +135,7 @@ void HourB(int reading) // Hour button debounce
         {
           hour++;
           second=0;
-          if(hour>=25)
+          if(hour>=24)
             hour=0;
           Serial.print("Set Hour ");
           Serial.print(hour);
@@ -146,7 +146,7 @@ void HourB(int reading) // Hour button debounce
         {
           alarm = true;
           aHour++;
-          if(aHour>=25)
+          if(aHour>=24)
             aHour=0;
           Serial.print("Set Alarm Hour ");
           Serial.print(aHour);
@@ -239,16 +239,19 @@ void setup(){
   TCNT1 = timer1_counter; // preload timer
   second++;
   
-  if(second == 60){ // minute change
+  if(second >= 60){ // minute change
     second = 0;
     minute++;
     EEPROM.put(eeAddress, hour);
     EEPROM.put(sizeof(hour), minute);
     Serial.println("Written Time to EEPROM!");
   }
-  if(minute == 60){ // hour change
+  if(minute >= 60){ // hour change
     minute = 0;
     hour++;
+  }
+  if(hour >= 24){ // day change
+    hour = 0;
   }
   Serial.print(hour); // Time Monitor (Debug)
   Serial.print(":");
@@ -295,7 +298,7 @@ void displayNumber(uint64_t image,int unit){ // Display Number & Text on LED Mat
     byte row = (image >> i * 8) & 0xFF;
     for(int j=0;j<maxN;j++){
       lc.setLed(unit,i,j,bitRead(row,j)); // address,row,column
-      delay(1); //number transition delay
+      delay(1); // number transition delay 
     }
   }
 }
