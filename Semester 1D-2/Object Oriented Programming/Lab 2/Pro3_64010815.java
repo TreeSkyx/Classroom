@@ -12,13 +12,17 @@ public class Pro3_64010815 {
         int day = input.nextInt();
 
         /* Leap Year Check */
-        boolean leap;
+        boolean leap = false;
+        // if the year is divided by 4
         if(year % 4 == 0) {
+            // if the year is century
             if(year % 100 == 0) {
+                // if the year divided by 400
                 if(year % 400 == 0)
                     leap = true;
                 else leap = false;
             }
+            // if the year isn't century
             else leap = true;
         } 
         else leap = false;
