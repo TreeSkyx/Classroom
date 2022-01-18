@@ -6,6 +6,7 @@ public class Pro5_64010815 {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the number of lines: ");
         int num = input.nextInt();
+        if(num>=1 && num <=15){
         /* Create Pyramid of Number */
         for (int i=1; i<=num; i++){
             for (int j=1; j<=(num-i)*2; j++){
@@ -19,5 +20,8 @@ public class Pro5_64010815 {
           }
           System.out.println();
         }
+        }
+        else {System.out.println("Error!");}
+        //Error 1 : User's input number that not in the range 1 to 15
     }
 }
