@@ -6,7 +6,7 @@ class Stack():
         self.items.append(i)
 
     def pop(self):
-            self.items.pop()
+        return self.items.pop()
     
     def isEmpty(self):
         return True if self.size() == 0 else False
