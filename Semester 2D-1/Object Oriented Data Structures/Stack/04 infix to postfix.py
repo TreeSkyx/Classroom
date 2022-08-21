@@ -24,9 +24,29 @@ class Stack():
 def infix2postfix(exp) :
 
     s = Stack()
+    
+    Op = set(['+','-','*','/','(',')'])         # Operator 
+    priority = {'+':1, '-':1, '*':2, '/':2}     # Priority of operator
+    
+    ans = ''
 
-    ### Enter Your Code Here ###
-
+    for i in exp:
+        if i not in Op:
+            ans += i
+        elif i == '(':
+            s.push('(')
+        elif i == ')':
+            while s.items and s.items[-1] != '(':
+                ans += s.pop()
+            s.pop()
+        else:
+            while s.items and s.items[-1] != '(' and priority[i]<=priority[s.items[-1]]:
+                ans += s.pop()
+            s.push(i)
+    while s.items:
+        ans += s.pop()
+    
+    return ans
         
 
 
