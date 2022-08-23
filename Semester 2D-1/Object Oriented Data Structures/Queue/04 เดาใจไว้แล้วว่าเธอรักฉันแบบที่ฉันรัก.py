@@ -1,90 +1,68 @@
-class Queue:
-    def __init__(self,list = None):
-        if list == None:
+class Queue :
+    def __init__(self, items = None):
+        if items == None:
             self.items = []
+            self.size = 0
         else:
-            self.items = list
+            self.items = items
+            self.size = len(self.items)
 
-    def enQueue(self,i):
-        self.items.append(i)
+    def __str__(self):
+        return str(self.items)[1:-1]
+
+    def enQueue(self, value):
+        self.size += 1
+        self.items.append(value)
 
     def deQueue(self):
+        self.size -= 1
         return self.items.pop(0)
     
     def isEmpty(self):
-        return self.items == []
-    
-    def size(self):
-        return len(self.items)
+        return self.size == 0
 
+inp = input("Enter Input : ").split(',')
+q1 = Queue()
+q2 = Queue()
 
-day = input("Enter Input : ").split(',')
+act = ['Eat', 'Game', 'Learn', 'Movie']
+loc = ['Res.', 'ClassR.', 'SuperM.', 'Home']
 
-act = {'0':"Eat", '1':"Game", '2':"Learn", '3':"Movie"}                # activity dict.
-location = {'0':"Res.", '1':"ClassR.", '2':"SuperM.", '3':"Home"}      # loaction dict.
-
-m = Queue()
-y = Queue()
-mAct = Queue()
-yAct = Queue()
-mLo = Queue()
-yLo = Queue()
-
+myque = 'My   Queue ='
+yourque = 'Your Queue ='
+myact = 'My   Activity:Location ='
+youract = 'Your Activity:Location ='
 score = 0
 
-for i in day:
-    me, you = i.split()
-    m.enQueue(me)
-    y.enQueue(you)
+for i in inp:
+    que = i.split(' ')
+    q1.enQueue(que[0])
+    q2.enQueue(que[1])
 
-print("My   Queue = ",end="")   # My Queue
-for i in m.items:
-    a, l = i.split(":")         # split activity and location
-    if i == m.items[0]:
-        print(i,end="")
-    else:
-        print(',',i,end="")
-    mAct.enQueue(act[a])
-    mLo.enQueue(location[l])
+while not q1.isEmpty() and not q2.isEmpty():
+    que = [q1.deQueue(), q2.deQueue()]
 
-print("\nYour Queue = ",end="")     # Your Queue
-for i in y.items:
-    a, l = i.split(":")
-    if i == y.items[0]:
-        print(i,end="")
-    else:
-        print(',',i,end="")
-    yAct.enQueue(act[a])
-    yLo.enQueue(location[l])
+    mydata = list(map(int, que[0].split(':')))
+    yourdata = list(map(int, que[1].split(':')))
 
-print("\nMy   Activity:Location = ",end="")     # My Activity & Loaction
-for i in range(mAct.size()):
-    if(i == 0):
-        print(mAct.items[i],":",mLo.items[i],end="",sep="")
-    else:
-        print(", ",mAct.items[i],":",mLo.items[i],end="",sep="")       # ref. activity and location using dict.
+    myque += ' ' + que[0] + ','
+    myact += ' ' + act[mydata[0]] + ':' + loc[mydata[1]] + ','
+    yourque += ' ' + que[1] + ','
+    youract += ' ' + act[yourdata[0]] + ':' + loc[yourdata[1]] + ','
 
-print("\nYour Activity:Location = ",end="")     # Your Activity & Loaction
-for i in range(yAct.size()):
-    if(i == 0):
-        print(yAct.items[i],":",yLo.items[i],end="",sep="")
-    else:
-        print(", ",yAct.items[i],":",yLo.items[i],end="",sep="")
-
-### Score Calculation
-for i in range(mAct.size()):
-    if mAct.items[i] == yAct.items[i] and mLo.items[i] == yLo.items[i]:     # same activity and loaction
-        score += 4
-    elif mAct.items[i] != yAct.items[i] and mLo.items[i] == yLo.items[i]:   # different activity / same  loaction
-        score += 2
-    elif mAct.items[i] == yAct.items[i] and mLo.items[i] != yLo.items[i]:   # same activity / different  loaction
+    if mydata[0] == yourdata[0] and mydata[1] != yourdata[1]:
         score += 1
-    else:                                                                   # different activity and location
+    elif mydata[0] != yourdata[0] and mydata[1] == yourdata[1]:
+        score += 2
+    elif mydata[0] == yourdata[0] and mydata[1] == yourdata[1]:
+        score += 4
+    else:
         score -= 5
 
-if score >= 7:
-    print("\nYes! You\'re my love! : Score is ", str(score), ".",sep="")
-elif score < 7 and score > 0:
-    print("\nUmm.. It\'s complicated relationship! : Score is ", str(score), ".",sep="")
-elif score < 0:
-    print("\nNo! We\'re just friends. : Score is ", str(score), ".",sep="")
+score = ('Yes! You\'re my love!' if score >= 7 else 'Umm.. It\'s complicated relationship!' if score > 0 else 'No! We\'re just friends.') + ' : Score is ' + str(score) + '.'
+
+print(myque[:-1])
+print(yourque[:-1])
+print(myact[:-1])
+print(youract[:-1])
+print(score) 
