@@ -57,5 +57,3 @@ print("------------MIRROR------------\n\
 : RORRIM\n",len(mBomb),sep='')
 print(''.join(str(i) for i in reversed(mBomb))if len(mBomb) != 0 else "ytpmE")
 print("(RORRIM) ! ! ! (s)evisolpxE",nItem)
-
-
