@@ -78,12 +78,6 @@ class DoublyLinkedList:
         # new node
         newNode = Node(data, prevNode, prevNode.next)
         prevNode.next = newNode.next.prev = newNode
-        '''
-        print('NOW', newNode.data)
-        print('NEXT', newNode.next.data)
-        print('PRE', newNode.prev.data)
-        print('___')
-        '''
         self.ssize += 1
 
     def search(self, data):
