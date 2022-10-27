@@ -7,3 +7,4 @@ Repository for documents and source code in Computer Engineering class at KMITL
 
 :two:Semester 2
 - Object Oriented Programming
+- Linear Algebra
