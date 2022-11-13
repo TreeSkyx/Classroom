@@ -34,13 +34,14 @@ df['LUNG_CANCER']=encoder.fit_transform(df['LUNG_CANCER'])
 df['GENDER']=encoder.fit_transform(df['GENDER'])
 print(df.head(15))
 
-# con_col = ['AGE']
-# cat_col=[]
-# for i in df.columns:
-#     if i!='AGE':
-#         cat_col.append(i)
+# Separating continuous and categorical columns
+con_col = ['AGE']
+cat_col=[]
+for i in df.columns:
+    if i!='AGE':
+        cat_col.append(i)
 
-
+## Heat map (Pearson's Similarity)
 # plt.figure(figsize=(15,15))
 # sns.heatmap(df.corr(),annot=True,linewidth=0.5,fmt='0.2f')
 # plt.show()
