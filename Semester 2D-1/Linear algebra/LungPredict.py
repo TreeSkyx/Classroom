@@ -110,14 +110,20 @@ plt.ylabel("Actual")
 print(classification_report(y_test,y_pred_log))
 
 # Accuracy Score 
-# acc = accuracy_score(y_test, y_pred_log)
-# print(acc)
+acc = accuracy_score(y_test, y_pred_log)
+print(acc)
 
 ## User input
 new_input = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 printTxt = ['GENDER','AGE','SMOKING','YELLOW_FINGERS','ANXIETY','PEER_PRESSURE','CHRONIC DISEASE','FATIGUE' ,'ALLERGY' ,'WHEEZING','ALCOHOL CONSUMING','COUGHING','SHORTNESS OF BREATH','SWALLOWING DIFFICULTY','CHEST PAIN']
 for i in range(15):
-    print('Enter',printTxt[i],": ",end='')
+    print('Enter',printTxt[i],end='')
+    if i == 0:
+        print('(MALE=1/FEMALE=0): ',end='')
+    elif i == 1:
+        print(': ',end='')
+    else:
+        print('(Yes=1/No=0): ',end='')
     new_input[0][i] = int(input())
 
 new_input[0][1] = scaler.fit_transform([[60]])
