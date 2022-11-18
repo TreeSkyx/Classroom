@@ -7,10 +7,12 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
 import warnings
 from imblearn.over_sampling import RandomOverSampler
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from sklearn.preprocessing import StandardScaler
 
 plt.style.use('fivethirtyeight')
@@ -92,3 +94,17 @@ scaler=StandardScaler()
 X_train['AGE']=scaler.fit_transform(X_train[['AGE']])
 X_test['AGE']=scaler.transform(X_test[['AGE']])
 X_train.head()
+
+## Model Building
+# Logistic Regression
+param_grid={'C':[0.001,0.01,0.1,1,10,100], 'max_iter':[50,75,100,200,300,400,500,700]}
+log=RandomizedSearchCV(LogisticRegression(solver='lbfgs'),param_grid,cv=5)
+log.fit(X_train,y_train)
+y_pred_log=log.predict(X_test)
+confusion_log=confusion_matrix(y_test,log.predict(X_test))
+plt.figure(figsize=(8,8))
+sns.heatmap(confusion_log,annot=True)
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.show()
+print(classification_report(y_test,y_pred_log))
