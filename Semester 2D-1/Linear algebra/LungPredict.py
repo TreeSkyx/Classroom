@@ -8,10 +8,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder
-
 import warnings
-
 from imblearn.over_sampling import RandomOverSampler
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 plt.style.use('fivethirtyeight')
 colors=['#011f4b','#03396c','#005b96','#6497b1','#b3cde0']
@@ -81,5 +81,14 @@ for i in X.columns[2:]:
 # print(X.head()) # Debug
 
 # Oversampling of Minority Class
-
 X_over,y_over=RandomOverSampler().fit_resample(X,y)
+
+# Train Test Split
+X_train,X_test,y_train,y_test = train_test_split(X_over,y_over,random_state=42,stratify=y_over)
+print(f'Train shape : {X_train.shape}\nTest shape: {X_test.shape}')
+
+# Scaling of AGE column
+scaler=StandardScaler()
+X_train['AGE']=scaler.fit_transform(X_train[['AGE']])
+X_test['AGE']=scaler.transform(X_test[['AGE']])
+X_train.head()
