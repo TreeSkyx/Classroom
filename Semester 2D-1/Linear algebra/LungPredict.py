@@ -11,6 +11,8 @@ from sklearn.preprocessing import LabelEncoder
 
 import warnings
 
+from imblearn.over_sampling import RandomOverSampler
+
 plt.style.use('fivethirtyeight')
 colors=['#011f4b','#03396c','#005b96','#6497b1','#b3cde0']
 sns.set_palette(sns.color_palette(colors))
@@ -50,16 +52,34 @@ for i in df.columns:
 
 ## Visualizing AGE columns
 
-warnings.filterwarnings('ignore')
-fig,ax = plt.subplots(1,3,figsize=(20,6))
-sns.distplot(df['AGE'],ax=ax[0])
-sns.histplot(data =df,x='AGE',ax=ax[1],hue='LUNG_CANCER',kde=True)
-sns.boxplot(x=df['LUNG_CANCER'],y=df['AGE'],ax=ax[2])
-plt.suptitle("Visualizing AGE column",size=20)
-plt.show()
+# warnings.filterwarnings('ignore')
+# fig,ax = plt.subplots(1,3,figsize=(20,6))
+# sns.distplot(df['AGE'],ax=ax[0])
+# sns.histplot(data =df,x='AGE',ax=ax[1],hue='LUNG_CANCER',kde=True)
+# sns.boxplot(x=df['LUNG_CANCER'],y=df['AGE'],ax=ax[2])
+# plt.suptitle("Visualizing AGE column",size=20)
+# # plt.show()
 
 
 ## Heat map (Pearson's Similarity)
 # plt.figure(figsize=(15,15))
 # sns.heatmap(df.corr(),annot=True,linewidth=0.5,fmt='0.2f')
 # plt.show()
+
+## Data Preprocessing
+
+# Separating Independent and Dependent Feature
+X = df.drop(['LUNG_CANCER'],axis=1)
+y = df['LUNG_CANCER']
+
+# Changing values of columns from 2,1 to 1,0 (2/1 to 1/0 in each data)
+for i in X.columns[2:]:
+    temp=[]
+    for j in X[i]:
+        temp.append(j-1)
+    X[i]=temp
+# print(X.head()) # Debug
+
+# Oversampling of Minority Class
+
+X_over,y_over=RandomOverSampler().fit_resample(X,y)
