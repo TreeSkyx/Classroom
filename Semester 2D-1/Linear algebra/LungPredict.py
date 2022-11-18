@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
 import warnings
 from imblearn.over_sampling import RandomOverSampler
@@ -54,7 +54,7 @@ for i in df.columns:
 
 ## Visualizing AGE columns
 
-# warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore')
 # fig,ax = plt.subplots(1,3,figsize=(20,6))
 # sns.distplot(df['AGE'],ax=ax[0])
 # sns.histplot(data =df,x='AGE',ax=ax[1],hue='LUNG_CANCER',kde=True)
@@ -87,7 +87,7 @@ X_over,y_over=RandomOverSampler().fit_resample(X,y)
 
 # Train Test Split
 X_train,X_test,y_train,y_test = train_test_split(X_over,y_over,random_state=42,stratify=y_over)
-print(f'Train shape : {X_train.shape}\nTest shape: {X_test.shape}')
+# print(f'Train shape : {X_train.shape}\nTest shape: {X_test.shape}')
 
 # Scaling of AGE column
 scaler=StandardScaler()
@@ -106,5 +106,20 @@ plt.figure(figsize=(8,8))
 sns.heatmap(confusion_log,annot=True)
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
-plt.show()
+# plt.show()
 print(classification_report(y_test,y_pred_log))
+
+# Accuracy Score 
+# acc = accuracy_score(y_test, y_pred_log)
+# print(acc)
+
+## User input
+new_input = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+printTxt = ['GENDER','AGE','SMOKING','YELLOW_FINGERS','ANXIETY','PEER_PRESSURE','CHRONIC DISEASE','FATIGUE' ,'ALLERGY' ,'WHEEZING','ALCOHOL CONSUMING','COUGHING','SHORTNESS OF BREATH','SWALLOWING DIFFICULTY','CHEST PAIN']
+for i in range(15):
+    print('Enter',printTxt[i],": ",end='')
+    new_input[0][i] = int(input())
+
+new_input[0][1] = scaler.fit_transform([[60]])
+new_output = log.predict(new_input)
+print("Predicted :",'YES' if new_output[0] == 1 else 'NO')
