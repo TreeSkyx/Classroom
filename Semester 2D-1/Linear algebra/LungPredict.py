@@ -1,8 +1,3 @@
-'''
-    ## Unfinished Project ##
-    DEVELOPMENT IN PROGRESS
-'''
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,14 +14,14 @@ plt.style.use('fivethirtyeight')
 colors=['#011f4b','#03396c','#005b96','#6497b1','#b3cde0']
 sns.set_palette(sns.color_palette(colors))
 
-## Loading Dataset
+## Read Dataset
 df = pd.read_csv('survey_lung_cancer.csv')
 # print(df.head)
 
 # Print shape of data
 # print(df.shape)
 
-## Analysis numeriacal columns
+# Analysis numeriacal columns
 # print(df.describe())
 
 # Check for null values
@@ -43,7 +38,7 @@ df.drop_duplicates(inplace=True)
 encoder = LabelEncoder()
 df['LUNG_CANCER']=encoder.fit_transform(df['LUNG_CANCER'])
 df['GENDER']=encoder.fit_transform(df['GENDER'])
-# print(df.head(15))
+# print(df.head())
 
 # Separating continuous and categorical columns
 con_col = ['AGE']
@@ -60,7 +55,7 @@ warnings.filterwarnings('ignore')
 # sns.histplot(data =df,x='AGE',ax=ax[1],hue='LUNG_CANCER',kde=True)
 # sns.boxplot(x=df['LUNG_CANCER'],y=df['AGE'],ax=ax[2])
 # plt.suptitle("Visualizing AGE column",size=20)
-# # plt.show()
+# plt.show()
 
 
 ## Heat map (Pearson's Similarity)
@@ -68,7 +63,7 @@ warnings.filterwarnings('ignore')
 # sns.heatmap(df.corr(),annot=True,linewidth=0.5,fmt='0.2f')
 # plt.show()
 
-## Data Preprocessing
+# ## Data Preprocessing
 
 # Separating Independent and Dependent Feature
 X = df.drop(['LUNG_CANCER'],axis=1)
@@ -80,7 +75,8 @@ for i in X.columns[2:]:
     for j in X[i]:
         temp.append(j-1)
     X[i]=temp
-# print(X.head()) # Debug
+
+# print(X.head(10))
 
 # Oversampling of Minority Class
 X_over,y_over=RandomOverSampler().fit_resample(X,y)
@@ -93,7 +89,7 @@ X_train,X_test,y_train,y_test = train_test_split(X_over,y_over,random_state=42,s
 scaler=StandardScaler()
 X_train['AGE']=scaler.fit_transform(X_train[['AGE']])
 X_test['AGE']=scaler.transform(X_test[['AGE']])
-X_train.head()
+# print(X_train.head())
 
 ## Model Building
 # Logistic Regression
@@ -101,17 +97,19 @@ param_grid={'C':[0.001,0.01,0.1,1,10,100], 'max_iter':[50,75,100,200,300,400,500
 log=RandomizedSearchCV(LogisticRegression(solver='lbfgs'),param_grid,cv=5)
 log.fit(X_train,y_train)
 y_pred_log=log.predict(X_test)
+
+# Model Accuracy Test
 confusion_log=confusion_matrix(y_test,log.predict(X_test))
 plt.figure(figsize=(8,8))
 sns.heatmap(confusion_log,annot=True)
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
-# plt.show()
+plt.show()
 print(classification_report(y_test,y_pred_log))
 
 # Accuracy Score 
-acc = accuracy_score(y_test, y_pred_log)
-print(acc)
+# acc = accuracy_score(y_test, y_pred_log)
+# print(acc)
 
 ## User input
 new_input = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
