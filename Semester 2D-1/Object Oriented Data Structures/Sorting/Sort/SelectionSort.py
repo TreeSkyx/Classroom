@@ -1,4 +1,4 @@
-#Noamal selection sort 
+#Normal selection sort 
 def SelectionSort(lst):
     # run form last index [-1] to first index [0] 
     for last in range(len(lst)-1, -1 , -1):

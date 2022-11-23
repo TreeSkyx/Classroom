@@ -1,5 +1,5 @@
 count = []
-#Noamal for Loop - Implement
+#Normal for Loop - Implement
 def BubbleSort(lst):
     for last in range(len(lst)-1, -1, -1):
         swaped = False
