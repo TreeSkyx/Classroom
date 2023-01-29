@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+</head>
+<style>
+    body{
+        width: fit-content;
+        margin: auto;
+    }
+    .grid-container{
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+        width: fit-content;
+        margin: auto;
+        
+    }
+    .grid-container > .reporter{
+        grid-column-start: 2;
+        grid-row-start: 1;
+        justify-items: right;
+    }
+    .grid-container > .text{
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
+    .grid-container > article > section.col1{
+        grid-column-start: 1;
+        grid-row-start: 2;
+        
+    }
+    .grid-container > section.col2{
+        grid-column-start: 2;
+        grid-row-start: 2;
+        padding-left: 50px;
+    }
+    .grid-container > section.prog{
+        grid-column-start: 1;
+        grid-row-start: 3;
+    }
+    .grid-container > section.luckd{
+        grid-column-start: 1;
+        grid-row-start: 4;
+    }
+    .grid-container > aside{
+        grid-column-start: 2;
+        grid-row-start: 3;
+        grid-row-end: span 2;
+        border: 3px solid;
+        border-left: 0px;
+        border-right: 0px;
+        width: 300px;
+        margin-bottom: 50px;
+        margin-left: 150px;
+    }
+    .reporter img{
+        border: 4px solid steelblue;
+        margin-left: 54%;
+    }
+    .text{
+        color: steelblue;
+    }
+    .text time{
+        color: deeppink;
+    }
+    header{
+        text-align: center;
+    }
+    h1{
+        background-color: gold;
+        color: blue;
+    }
+    h2{
+        color: pink;
+    }
+    aside p {
+        width: 250px;
+        font-size: 45px;
+      }
+    fieldset{
+        width: fit-content;
+    }
+    footer{
+        background-color: gold;
+        color: blue;
+        text-align: center;
+    }
+</style>
+<body>
+<header class="top"><h1>SW Studio Today</h1></header>
+<header class="article"><h2>The record of the CSS class</h2></header>
+<div class="grid-container">
+<div class="reporter">
+<img src="https://previews.123rf.com/images/gmast3r/gmast3r1809/gmast3r180900199/109840480-brunette-businessman-avatar-man-face-profile-icon-concept-online-support-service-male-cartoon-charac.jpg" alt="picture" width=200>
+</div>
+<div class="text">Reported by <br>Mr. Wiroon Somphaothong<br> Tonfah<br> ID 64010815<br><br><time datetime="2023-01-29">Jan 29, 2023</time></div>
+<article>
+<section class="col1">
+<h3>Introduction</h3>
+<p>describe your background about CSS e.g.
+<ul>
+<li>do you know CSS?</li>
+<li>Have you ever been using CSS?</li>
+<li>Have you ever worked with CSS before?</li>
+<li>Have you any idea how CSS works?</li>
+<li>What are you expecting from CSS?</li>
+<li>etc.</li>
+</ul>
+</section>
+</article>
+<section class="col2">
+    <h3>The expectation</h3>
+    <p>Describe your expectations for today's class</p>
+    <p>You can list it like this:</p>
+    <ol>
+    <li>expect #1</li>
+    <li>expect #2</li>
+    <li>expect #3</li>
+    </ol>
+    </section>
+
+<aside>
+<p><em>your quote of <br>today's class</em></p>
+</aside>
+
+<section class="prog">
+<p>Progress of today's class <progress value="2" max="5"></progress></p>
+</section>
+
+<section class="luckd">
+<p>register for lucky draw</p>
+<form>
+<fieldset>
+<label>Name:</label><em>*</em> <input type="text" id="name" placeholder="John Smith" autofocus required><br>
+<label>email:</label><em>*</em> <input type="email" id="email" placeholder="abc@def.com" autofocus required><br>
+<label>Tel:</label><em>*</em> <input type="tel" id="tel" placeholder="0xx-xxxxxxx" pattern="[0-9]{3}-[0-9]{7}" autofocus required><br>
+<input type="submit">
+</fieldset>
+</form>
+</section>
+</div>
+<footer>
+ce.kmitl all rights reserved & copyright 2020
+</footer>
+</body>
+</html>
