@@ -10,7 +10,7 @@
 
 
         const d = document.createElement("div");
-        d.setAttribute("id", "Div1");
+        d.setAttribute("id", "time");
         const t = document.createTextNode(Date());
 
         var i = 0;
@@ -22,21 +22,10 @@
             d.style.display = "inline-block";
             d.style.backgroundColor = color[i];
             d.style.color = txtColor[i];
-            d.style.border = "thin solid blsue";
-            d.style.position = "absolute";
-            d.style.top = "0px";
-            d.style.right = "0px";
+            d.style.border = "thin solid black";
             const element = document.getElementById("maincontainer");
             element.appendChild(d);
             i = (i + 1) % color.length;
-        }
-
-
-        function bgChange() {
-            const doc = document.getElementsByTagName("div");
-
-            doc.style.backgroundColor = color[i];
-
         }
 
         function button() {
@@ -51,6 +40,13 @@
         const btn = document.getElementById('btn');
         btn.addEventListener('click', () => {
             btn.style.display = 'none';
+            d.style.position = "absolute";
+            d.style.top = "0px";
+            d.style.right = "0px";
+        });
+
+        d.addEventListener('click', () => {
+            d.style.position = "static";
         });
 
     </script>
