@@ -6,20 +6,53 @@
 <body>
     <div id="maincontainer"></div>
     <script>
-        // document.getElementById("maincontainer").innerHTML = "Exercise04 : JavaScript&DOM";
-        function myTimer() {
-            const d = new Date();
-            document.getElementById("maincontainer").innerHTML = Date();
-        }
-        setInterval(myTimer, 1000);
+        document.getElementById("maincontainer").innerHTML = '<h2>Excerise04 : Javascript&DOM</h2>'
+
+
+        const d = document.createElement("div");
+        d.setAttribute("id", "Div1");
+        const t = document.createTextNode(Date());
+
         var i = 0;
-        function change() {
-            var doc = document.getElementById("maincontainer");
-            var color = ["black", "blue", "brown", "green"];
-            doc.style.backgroundColor = color[i];
+        function myTimer() {
+            t.nodeValue = Date();
+            d.appendChild(t);
+            var color = ["red", "green", "blue", "pink", "lime", "aqua"];
+            var txtColor = ["lime", "grey", "green", "red", "pink", "black"]
+            d.style.display = "inline-block";
+            d.style.backgroundColor = color[i];
+            d.style.color = txtColor[i];
+            d.style.border = "thin solid blsue";
+            d.style.position = "absolute";
+            d.style.top = "0px";
+            d.style.right = "0px";
+            const element = document.getElementById("maincontainer");
+            element.appendChild(d);
             i = (i + 1) % color.length;
         }
-        setInterval(change, 1000);
+
+
+        function bgChange() {
+            const doc = document.getElementsByTagName("div");
+
+            doc.style.backgroundColor = color[i];
+
+        }
+
+        function button() {
+            var x = document.createElement("button");
+            x.setAttribute("id","btn");
+            var t = document.createTextNode("Click me to display Date and Time");
+            x.onclick = function () { myTimer(); setInterval(myTimer, 1000); };
+            x.appendChild(t);
+            document.body.appendChild(x);
+        }
+        button()
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            btn.style.display = 'none';
+        });
+
     </script>
 </body>
 
