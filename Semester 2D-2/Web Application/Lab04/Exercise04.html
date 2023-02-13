@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        <div id="maincontainer"></div>
-        <script>
 
-        </script>
-    </body>
+<head></head>
+
+<body>
+    <div id="maincontainer"></div>
+    <script>
+        // document.getElementById("maincontainer").innerHTML = "Exercise04 : JavaScript&DOM";
+        function myTimer() {
+            const d = new Date();
+            document.getElementById("maincontainer").innerHTML = Date();
+        }
+        setInterval(myTimer, 1000);
+        var i = 0;
+        function change() {
+            var doc = document.getElementById("maincontainer");
+            var color = ["black", "blue", "brown", "green"];
+            doc.style.backgroundColor = color[i];
+            i = (i + 1) % color.length;
+        }
+        setInterval(change, 1000);
+    </script>
+</body>
+
 </html>
