@@ -9,47 +9,71 @@
         const doc = document.getElementById("maincontainer");
         doc.innerHTML = '<h2>Excerise04 : Javascript&DOM</h2>'
 
-
-        const d = document.createElement("div");
-        d.setAttribute("id", "time");
-        const t = document.createTextNode(Date());
-        d.appendChild(t);
-
+        // Change Background of the button
         var i = 0;
         function changeBg() {
             var color = ["red", "green", "blue", "pink", "lime", "aqua"];
             var txtColor = ["lime", "white", "green", "red", "pink", "black"];
-            d.style.display = "inline-block";
-            d.style.backgroundColor = color[i];
-            d.style.color = txtColor[i];
-            d.style.border = "thin solid black";
+            btn.style.backgroundColor = color[i];
+            btn.style.color = txtColor[i];
+            btn.style.border = "thin solid black";
             i = (i + 1) % color.length;
             const element = document.getElementById("maincontainer");
             element.appendChild(d);
 
         }
 
+        var timer = 0; // Set interval for changeBg func.
 
+        // add button to HTML
         function button() {
             var x = document.createElement("button");
             x.setAttribute("id", "btn");
             var t = document.createTextNode("Click me to display Date and Time");
-            x.onclick = function () { startWorker(); changeBg(); setInterval(changeBg,1000); };
             x.appendChild(t);
             doc.appendChild(x);
         }
-        button()
-        const btn = document.getElementById('btn');
+
+        button();
+        const btn = document.getElementById('btn'); // button object
+        var check = 0;
         btn.addEventListener('click', () => {
-            btn.style.display = 'none';
-            d.style.position = "absolute";
-            d.style.top = "0px";
-            d.style.right = "0px";
+            if (check == 0) {
+                btn.style.position = "absolute";
+                btn.style.top = "0px";
+                btn.style.right = "0px";
+                btn.innerHTML = Date();
+                check += 1;
+                timer = setInterval(changeBg, 1000);
+                startWorker();
+
+            }
+            else {
+                btn.style.position = "initial";
+                check = 0;
+                stopWorker();
+                clearInterval(timer);
+
+            }
         });
 
-        d.addEventListener('click', () => {
-            d.style.position = "initial";
-        });
+        // Web Worker
+        function startWorker() {
+            if (typeof (Worker) !== "undefined") {
+                if (typeof (w) == "undefined") {
+                    w = new Worker("workers.js");
+                }
+                w.onmessage = function (event) {
+                    btn.innerHTML = event.data;
+                };
+            } else {
+                alert("Sorry, your browser does not support Web Workers");
+            }
+        }
+        function stopWorker() {
+            w.terminate();
+            w = undefined;
+        }
 
         const personalInfo = document.createElement('div');
         personalInfo.setAttribute("id", 'person');
@@ -64,18 +88,6 @@
 
         });
 
-        function startWorker() {
-            if (typeof (Worker) !== "undefined") {
-                if (typeof (w) == "undefined") {
-                    w = new Worker("workers.js");
-                }
-                w.onmessage = function (event) {
-                    t.nodeValue = event.data;
-                };
-            } else {
-                alert("Sorry, your browser does not support Web Workers");
-            }
-        }
 
     </script>
 </body>
