@@ -74,19 +74,36 @@
             w.terminate();
             w = undefined;
         }
+        doc.appendChild(document.createElement('br'));
+        doc.appendChild(document.createElement('br'));
+        doc.appendChild(document.createElement('br'));
 
+        // Personal Info 
         const personalInfo = document.createElement('div');
         personalInfo.setAttribute("id", 'person');
         const personTxt = document.createTextNode("Personal Info");
         const info = document.createElement('p');
         personalInfo.appendChild(personTxt);
         personalInfo.style.textDecoration = "underline";
-        personalInfo.style.paddingTop = "10px";
         personalInfo.style.color = "pink";
         doc.appendChild(personalInfo);
 
-        doc.appendChild(info);
+        // Event listener for bg color
+        personalInfo.addEventListener('mouseover', () => {
+            personalInfo.style.backgroundColor = "yellow";
+            personalInfo.style.color = "blue";
+            personalInfo.style.width = "fit-content";
+        });
 
+        personalInfo.addEventListener('mouseleave', () => {
+            personalInfo.style.backgroundColor = "white";
+            personalInfo.style.color = "pink";
+            personalInfo.style.width = "fit-content";
+        });
+
+        doc.appendChild(info); // append Infomation
+
+        // Click on Personal Info
         var checkInfo = 0;
         personalInfo.addEventListener('click', () => {
             if (checkInfo == 0){
@@ -103,8 +120,10 @@
             }
         });
         
+        // Image Object
         const img = document.createElement('div');
 
+        // Snapshots
         const snap = document.createElement('div');
         snap.setAttribute("id", 'snap');
         snap.innerHTML = "<h1>Snapshots</h1>";
@@ -112,6 +131,7 @@
         const ul = document.createElement('ul');
         snap.appendChild(ul);
 
+        // Bullet 1
         const li1 = document.createElement('li');
         ul.appendChild(li1);
         const li1_txt = document.createElement('a');
@@ -121,10 +141,11 @@
         li1.append(li1_txt);
 
         li1.addEventListener('click', () => {
-            img.innerHTML = "<img src = \"https://media1.fdncms.com/stranger/imager/u/original/75692992/birds-_-fireworks.jpg\"\
-                                        width = \"400\">";
+            img.innerHTML = "<img src = \"https://preview.redd.it/xsy8eq6vecp71.jpg?auto=webp&s=b5386bff5c81ec9ad09c7474295a520960e70014\"\
+                                        width = \"600\">";
         });
 
+        // Bullet 2
         const li2 = document.createElement('li');
         ul.appendChild(li2);
         const li2_txt = document.createElement('a');
@@ -137,6 +158,7 @@
                                         width = \"400\">";
         });
 
+        // Bullet 3
         const li3 = document.createElement('li');
         ul.appendChild(li3);
         const li3_txt = document.createElement('a');
@@ -149,6 +171,7 @@
                                         width = \"400\">";
         });
 
+        // Bullet 4
         const li4 = document.createElement('li');
         ul.appendChild(li4);
         const li4_txt = document.createElement('a');
@@ -164,10 +187,6 @@
         doc.appendChild(img);
         img.innerHTML = "<img src = \"https://yt3.googleusercontent.com/r_JxOMQqL__JpMhQCjFhlKIVzwMV4O5lhfgzQWAPw_ogUDhUvy7XLH5w80hLGVhM2tmmWWvvHw=s900-c-k-c0x00ffffff-no-rj\"\
                                     width = \"400\">";
-
-
-
-
 
     </script>
 </body>
