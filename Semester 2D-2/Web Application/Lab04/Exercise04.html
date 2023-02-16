@@ -30,6 +30,7 @@
             var x = document.createElement("button");
             x.setAttribute("id", "btn");
             var t = document.createTextNode("Click me to display Date and Time");
+            x.onclick = function(){startWorker(); changeBg();};
             x.appendChild(t);
             doc.appendChild(x);
         }
