@@ -6,35 +6,37 @@
 <body>
     <div id="maincontainer"></div>
     <script>
-        document.getElementById("maincontainer").innerHTML = '<h2>Excerise04 : Javascript&DOM</h2>'
+        const doc = document.getElementById("maincontainer");
+        doc.innerHTML = '<h2>Excerise04 : Javascript&DOM</h2>'
 
 
         const d = document.createElement("div");
         d.setAttribute("id", "time");
         const t = document.createTextNode(Date());
+        d.appendChild(t);
 
         var i = 0;
-        function myTimer() {
-            t.nodeValue = Date();
-            d.appendChild(t);
+        function changeBg() {
             var color = ["red", "green", "blue", "pink", "lime", "aqua"];
-            var txtColor = ["lime", "grey", "green", "red", "pink", "black"]
+            var txtColor = ["lime", "white", "green", "red", "pink", "black"];
             d.style.display = "inline-block";
             d.style.backgroundColor = color[i];
             d.style.color = txtColor[i];
             d.style.border = "thin solid black";
+            i = (i + 1) % color.length;
             const element = document.getElementById("maincontainer");
             element.appendChild(d);
-            i = (i + 1) % color.length;
+
         }
+
 
         function button() {
             var x = document.createElement("button");
-            x.setAttribute("id","btn");
+            x.setAttribute("id", "btn");
             var t = document.createTextNode("Click me to display Date and Time");
-            x.onclick = function () { myTimer(); setInterval(myTimer, 1000); };
+            x.onclick = function () { startWorker(); changeBg(); setInterval(changeBg,1000); };
             x.appendChild(t);
-            document.body.appendChild(x);
+            doc.appendChild(x);
         }
         button()
         const btn = document.getElementById('btn');
@@ -46,8 +48,34 @@
         });
 
         d.addEventListener('click', () => {
-            d.style.position = "static";
+            d.style.position = "initial";
         });
+
+        const personalInfo = document.createElement('div');
+        personalInfo.setAttribute("id", 'person');
+        const personTxt = document.createTextNode("Personal Info");
+        personalInfo.appendChild(personTxt);
+        personalInfo.style.position = "fixed";
+        personalInfo.style.textDecoration = "underline";
+        personalInfo.style.paddingTop = "10px";
+        doc.appendChild(personalInfo);
+
+        personalInfo.addEventListener('click', () => {
+
+        });
+
+        function startWorker() {
+            if (typeof (Worker) !== "undefined") {
+                if (typeof (w) == "undefined") {
+                    w = new Worker("workers.js");
+                }
+                w.onmessage = function (event) {
+                    t.nodeValue = event.data;
+                };
+            } else {
+                alert("Sorry, your browser does not support Web Workers");
+            }
+        }
 
     </script>
 </body>
