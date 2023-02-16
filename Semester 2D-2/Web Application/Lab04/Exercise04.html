@@ -7,13 +7,13 @@
     <div id="maincontainer"></div>
     <script>
         const doc = document.getElementById("maincontainer");
-        doc.innerHTML = '<h2>Excerise04 : Javascript&DOM</h2>'
+        doc.innerHTML = '<h2>Excerise 04 : Javascript&DOM</h2>'
 
         // Change Background of the button
         var i = 0;
         function changeBg() {
             var color = ["red", "green", "blue", "pink", "lime", "aqua"];
-            var txtColor = ["lime", "white", "green", "red", "pink", "black"];
+            var txtColor = ["lime", "white", "yellow", "red", "pink", "black"];
             btn.style.backgroundColor = color[i];
             btn.style.color = txtColor[i];
             btn.style.border = "thin solid black";
@@ -39,7 +39,7 @@
         var check = 0;
         btn.addEventListener('click', () => {
             if (check == 0) {
-                btn.style.position = "absolute";
+                btn.style.position = "fixed";
                 btn.style.top = "0px";
                 btn.style.right = "0px";
                 btn.innerHTML = Date();
@@ -78,15 +78,95 @@
         const personalInfo = document.createElement('div');
         personalInfo.setAttribute("id", 'person');
         const personTxt = document.createTextNode("Personal Info");
+        const info = document.createElement('p');
         personalInfo.appendChild(personTxt);
-        personalInfo.style.position = "fixed";
         personalInfo.style.textDecoration = "underline";
         personalInfo.style.paddingTop = "10px";
+        personalInfo.style.color = "pink";
         doc.appendChild(personalInfo);
 
-        personalInfo.addEventListener('click', () => {
+        doc.appendChild(info);
 
+        var checkInfo = 0;
+        personalInfo.addEventListener('click', () => {
+            if (checkInfo == 0){
+            info.innerHTML = " <ul>\
+            <li>Wiroon Somphaothong, ID: 64010815</li>\
+            <li>Subject: Web Application Development</li>\
+            <li>Semester: 2/2565</li>\
+            </ul>";
+            checkInfo += 1;
+            }
+            else {
+                info.innerHTML = "";
+                checkInfo = 0;
+            }
         });
+        
+        const img = document.createElement('div');
+
+        const snap = document.createElement('div');
+        snap.setAttribute("id", 'snap');
+        snap.innerHTML = "<h1>Snapshots</h1>";
+        doc.appendChild(snap);
+        const ul = document.createElement('ul');
+        snap.appendChild(ul);
+
+        const li1 = document.createElement('li');
+        ul.appendChild(li1);
+        const li1_txt = document.createElement('a');
+        li1_txt.innerHTML = "Fireworks"
+        li1_txt.style.color = "blue";
+        li1_txt.style.textDecoration = "underline";
+        li1.append(li1_txt);
+
+        li1.addEventListener('click', () => {
+            img.innerHTML = "<img src = \"https://media1.fdncms.com/stranger/imager/u/original/75692992/birds-_-fireworks.jpg\"\
+                                        width = \"400\">";
+        });
+
+        const li2 = document.createElement('li');
+        ul.appendChild(li2);
+        const li2_txt = document.createElement('a');
+        li2_txt.innerHTML = "Crest"
+        li2_txt.style.color = "blue";
+        li2_txt.style.textDecoration = "underline";
+        li2.append(li2_txt);
+        li2.addEventListener('click', () => {
+            img.innerHTML = "<img src = \"https://img.freepik.com/premium-vector/premium-quality-crown-3-stars-badge-flat-gold-black-logo_553860-583.jpg\"\
+                                        width = \"400\">";
+        });
+
+        const li3 = document.createElement('li');
+        ul.appendChild(li3);
+        const li3_txt = document.createElement('a');
+        li3_txt.innerHTML = "Action"
+        li3_txt.style.color = "blue";
+        li3_txt.style.textDecoration = "underline";
+        li3.append(li3_txt);
+        li3.addEventListener('click', () => {
+            img.innerHTML = "<img src = \"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Mookie_Betts_hitting_the_ball_%2836478781664%29.jpg/640px-Mookie_Betts_hitting_the_ball_%2836478781664%29.jpg\"\
+                                        width = \"400\">";
+        });
+
+        const li4 = document.createElement('li');
+        ul.appendChild(li4);
+        const li4_txt = document.createElement('a');
+        li4_txt.innerHTML = "Buffalo"
+        li4_txt.style.color = "blue";
+        li4_txt.style.textDecoration = "underline";
+        li4.append(li4_txt);
+        li4.addEventListener('click', () => {
+            img.innerHTML = "<img src = \"https://i.natgeofe.com/n/de7be89d-3715-4e89-b83b-ab697ef781b8/thumbnail-cape-buffalo-nationalgeographic_1976203_3x2.jpg\"\
+                                        width = \"400\">";
+        });
+
+        doc.appendChild(img);
+        img.innerHTML = "<img src = \"https://yt3.googleusercontent.com/r_JxOMQqL__JpMhQCjFhlKIVzwMV4O5lhfgzQWAPw_ogUDhUvy7XLH5w80hLGVhM2tmmWWvvHw=s900-c-k-c0x00ffffff-no-rj\"\
+                                    width = \"400\">";
+
+
+
 
 
     </script>
