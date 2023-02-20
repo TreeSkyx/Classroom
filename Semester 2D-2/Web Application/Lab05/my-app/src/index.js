@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const FoodBox = props => {
+  return <div className="foodBox">
+    {
+      props.msg
+    }
+  </div>
+};
+export default FoodBox
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class Block extends React.Component {
+  render() {
+    return (
+      <div className="block">
+        <h2>โหวตอาหาร</h2>
+        <div>
+          <FoodBox msg="Hi"></FoodBox>
+          <FoodBox msg="Hello"></FoodBox>
+      </div>
+      </div>
+    );
+  }
+}
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Block />);
