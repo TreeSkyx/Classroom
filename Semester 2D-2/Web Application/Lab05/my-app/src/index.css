@@ -21,6 +21,12 @@ body {
   grid-row-start: 1;
 }
 
+.grid-container > div.vote {
+  margin: auto;
+  grid-column-start: span 2;
+  grid-row-start: 3;
+}
+
 .block h2 {
   color: gold;
   text-align: center;
