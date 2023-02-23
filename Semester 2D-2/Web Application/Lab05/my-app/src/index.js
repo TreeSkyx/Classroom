@@ -37,7 +37,7 @@ class FoodBox extends React.Component {
       <div className="foodBox">
         <div className="grid-container">
           <div className="col1">
-            <h3><b>{this.props.foodType}</b></h3>
+            <h2><b>{this.props.foodType}</b></h2>
             <b>{this.props.foodName}</b>
             <br></br>
             <br></br>
@@ -71,7 +71,7 @@ class UnVoteButton extends React.Component {
     this.props.parentCallback("-1");
   };
   render() {
-    return <button onClick={this.onTrigger}>Click to UnVote</button>;
+    return <button onClick={this.onTrigger}>Click to Unvote</button>;
   }
 }
 
@@ -79,7 +79,7 @@ class Block extends React.Component {
   render() {
     return (
       <div className="block">
-        <h2>โหวตอาหาร</h2>
+        <h1>โหวตอาหาร</h1>
         <div>
           <FoodBox
             foodType="อาหารคาว"
