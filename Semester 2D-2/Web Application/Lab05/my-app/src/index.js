@@ -14,7 +14,7 @@ class FoodBox extends React.Component {
       } else if (this.state.voteMsg === "Max") {
         alert("Cannot Vote more");
       } else if (this.state.voteMsg === "Min") {
-        this.setState({ voteMsg: 0 });
+        this.setState({ voteMsg: 1 });
       } else {
         this.setState({ voteMsg: this.state.voteMsg + 1 });
       }
